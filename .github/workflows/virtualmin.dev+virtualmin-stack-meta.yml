@@ -74,7 +74,7 @@ jobs:
               pkg_suggests="${result[i+4]}"
               pkg_replaces="${result[i+5]}"
           
-              build_native_package \
+              sudo build_native_package \
                   --architectures noarch \
                   --target-dir "$ROOT_REPOS" \
                   --base-name "$pkg_name" \
