@@ -16,7 +16,7 @@ env:
   PKG_HOMEPAGE: "https://github.com/virtualmin/virtualmin-stack-meta"
   IS_RELEASE: ${{ github.event_name == 'release' }}
 
-  BUILD_DEPS: "tar curl gzip dpkg-dev build-essential coreutils"
+  BUILD_DEPS: "tar curl gzip dpkg-dev fakeroot build-essential coreutils"
   BUILD_BOOTSTRAP: "https://raw.githubusercontent.com/webmin/webmin-ci-cd/main/build/bootstrap.bash"
 
 jobs:
@@ -49,14 +49,14 @@ jobs:
           CLOUD__SSH_PRV_KEY: ${{ secrets.DEV_SSH_PRV_KEY }}
           CLOUD__SIGN_BUILD_REPOS_CMD: ${{ secrets.DEV_SIGN_BUILD_REPOS_CMD }}
         run: |-
-          sudo bash <<EOF
+
           set -euo pipefail
           
           # Check testing flag
           testing=$([[ "${{ env.IS_RELEASE }}" == "false" ]] && echo "--testing" || echo "")
           
           # Bootstrap build
-          source bootstrap.bash $testing
+          source bootstrap.bash "$testing"
 
           # Generate LEMP
           sh generate-lemp.sh
@@ -94,4 +94,3 @@ jobs:
           upload_list=("$ROOT_REPOS/"*)
           cloud_upload upload_list
           cloud_sign_and_build_repos virtualmin.dev
-          EOF
