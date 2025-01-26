@@ -1,5 +1,8 @@
-# virtualmin-lamp-stack-ubu
+## virtualmin-stack-meta
 
-Ubuntu and Debian metapackage that depends on the LAMP stack for Virtualmin
+A set of dummy packages designed to pull in all required dependencies. Together
+with the "virtualmin-core" package, it installs everything needed for the
+selected stack.
 
-Created with equivs-control, and can be built with equivs-build.
+The builds are automatically deployed to the Virtualmin development repositories
+on every commit or tagged release.
