@@ -12,7 +12,6 @@ Recommends: dnsutils, unzip, zip, python3, libapache2-mod-fcgid, libfcgi-dev, ap
 Suggests: bind9, php-cgi, postfix, postfix-pcre, procmail, procmail-wrapper, dovecot-core, dovecot-imapd, dovecot-pop3d, libsasl2-2, libsasl2-modules, sasl2-bin, postgresql, postgresql-client, libdbd-pg-perl, libpg-perl, clamav-base, clamav, clamav-daemon, clamav-freshclam, clamav-docs, clamav-testfiles, libconfig-inifiles-perl, spamassassin, spamc, postgrey, fail2ban, milter-greylist, proftpd-basic, proftpd-mod-crypto
 Replaces: virtualmin-base
 Architecture: all
-Copyright: LICENSE
 Description: Installs required dependencies for the stack
  A dummy package designed to pull in all required dependencies. Together with
  the "virtualmin-core" package, it installs everything needed for the selected

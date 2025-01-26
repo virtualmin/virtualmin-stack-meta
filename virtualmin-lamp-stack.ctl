@@ -12,7 +12,6 @@ Recommends: python3, postfix, postfix-pcre, awscli, libapache2-mod-fcgid, apache
 Suggests: postgresql, postgresql-client, libdbd-pg-perl, libpg-perl
 Replaces: virtualmin-base
 Architecture: all
-Copyright: LICENSE
 Description: Installs required dependencies for the stack
  A dummy package designed to pull in all required dependencies. Together with
  the "virtualmin-core" package, it installs everything needed for the selected

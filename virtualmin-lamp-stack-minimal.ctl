@@ -12,7 +12,6 @@ Recommends: python3, postfix, postfix-pcre, libapache2-mod-fcgid, apache2-suexec
 Suggests: postgresql, postgresql-client, libdbd-pg-perl, libpg-perl, clamav-base, clamav, clamav-daemon, clamav-freshclam, clamav-docs, clamav-testfiles, libconfig-inifiles-perl, spamassassin, spamc, postgrey, fail2ban, milter-greylist, proftpd-basic, proftpd-mod-crypto
 Replaces: virtualmin-base
 Architecture: all
-Copyright: LICENSE
 Description: Installs required dependencies for the stack
  A dummy package designed to pull in all required dependencies. Together with
  the "virtualmin-core" package, it installs everything needed for the selected
