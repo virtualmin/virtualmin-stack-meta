@@ -13,9 +13,7 @@ Suggests: postgresql, postgresql-client, libdbd-pg-perl, libpg-perl
 Replaces: virtualmin-base
 Architecture: all
 Copyright: LICENSE
-Description: Metapackage for Virtualmin LAMP Stack.
- This is a fake package to depend on packages for a LAMP Stack.
- .
- This packages depends on a variety of packages needed for a full LAMP
- stack. When combined with virtualmin-core, installs everything needed
- for a complete web hosting system with control panel.
+Description: Installs required dependencies for the stack
+ A dummy package designed to pull in all required dependencies. Together with
+ the "virtualmin-core" package, it installs everything needed for the selected
+ stack.
