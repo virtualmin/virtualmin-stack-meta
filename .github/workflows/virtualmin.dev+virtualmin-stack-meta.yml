@@ -50,47 +50,58 @@ jobs:
           CLOUD__SIGN_BUILD_REPOS_CMD: ${{ secrets.DEV_SIGN_BUILD_REPOS_CMD }}
         run: |-
 
-          set -euo pipefail
-          
-          # Check testing flag
-          testing=$([[ "${{ env.IS_RELEASE }}" == "false" ]] && echo " --testing" || echo "")
-          
-          # Bootstrap build
-          source bootstrap.bash${testing:-}
+          # Expand variables for GitHub Actions
+          PKG_RELEASE="${{ env.PKG_RELEASE }}"
+          PKG_SUMMARY="${{ env.PKG_SUMMARY }}"
+          PKG_DESC="${{ env.PKG_DESC }}"
+          PKG_HOMEPAGE="${{ env.PKG_HOMEPAGE }}"
+          IS_RELEASE="${{ env.IS_RELEASE }}"
 
-          # Generate LEMP
-          sh generate-lemp.sh
-          
-          # Parse debian control and build packages
-          while IFS= read -r line; do
-              result+=("$line")
-          done < <(parse_debian_control "." "$testing")
-          
-          for ((i = 0; i < ${#result[@]}; i += 6)); do
-              pkg_name="${result[i]}"
-              pkg_version="${result[i+1]}"
-              pkg_depends="${result[i+2]}"
-              pkg_recommends="${result[i+3]}"
-              pkg_suggests="${result[i+4]}"
-              pkg_replaces="${result[i+5]}"
-          
-              sudo build_native_package \
-                  --architectures noarch \
-                  --target-dir "$ROOT_REPOS" \
-                  --base-name "$pkg_name" \
-                  --version "$pkg_version" \
-                  --release "${{ env.PKG_RELEASE }}" \
-                  --depends "$pkg_depends" \
-                  --recommends "$pkg_recommends" \
-                  --suggests "$pkg_suggests" \
-                  --replaces "$pkg_replaces" \
-                  --skip rpm \
-                  --summary "${{ env.PKG_SUMMARY }}" \
-                  --description "${{ env.PKG_DESC }}" \
-                  --homepage "${{ env.PKG_HOMEPAGE }}"
-          done
-          
-          # Upload and sign
-          upload_list=("$ROOT_REPOS/"*)
-          cloud_upload upload_list
-          cloud_sign_and_build_repos virtualmin.dev
+          # Run build as root
+          sudo bash <<EOF
+            set -euo pipefail
+            
+            # Check testing flag
+            testing=$([[ "$IS_RELEASE" == "false" ]] && echo " --testing" || echo "")
+            
+            # Bootstrap build
+            source bootstrap.bash${testing:-}
+
+            # Generate LEMP
+            sh generate-lemp.sh
+            
+            # Parse debian control and build packages
+            declare -a result
+            while IFS= read -r line; do
+                result+=("$line")
+            done < <(parse_debian_control "." "$testing")
+            
+            for ((i = 0; i < ${#result[@]}; i += 6)); do
+                pkg_name="${result[i]}"
+                pkg_version="${result[i+1]}"
+                pkg_depends="${result[i+2]}"
+                pkg_recommends="${result[i+3]}"
+                pkg_suggests="${result[i+4]}"
+                pkg_replaces="${result[i+5]}"
+            
+                build_native_package \
+                    --architectures noarch \
+                    --target-dir "$ROOT_REPOS" \
+                    --base-name "$pkg_name" \
+                    --version "$pkg_version" \
+                    --release "$PKG_RELEASE" \
+                    --depends "$pkg_depends" \
+                    --recommends "$pkg_recommends" \
+                    --suggests "$pkg_suggests" \
+                    --replaces "$pkg_replaces" \
+                    --skip rpm \
+                    --summary "$PKG_SUMMARY" \
+                    --description "$PKG_DESC" \
+                    --homepage "${{ env.PKG_HOMEPAGE }}"
+            done
+            
+            # Upload and sign
+            upload_list=("$ROOT_REPOS/"*)
+            cloud_upload upload_list
+            cloud_sign_and_build_repos virtualmin.dev
+          EOF
