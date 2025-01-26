@@ -53,10 +53,10 @@ jobs:
           set -euo pipefail
           
           # Check testing flag
-          testing=$([[ "${{ env.IS_RELEASE }}" == "false" ]] && echo " --testing" || echo "")
+          testing=$([[ "${{ env.IS_RELEASE }}" == "false" ]] && echo "--testing" || echo "")
           
           # Bootstrap build
-          source bootstrap.bash${testing:-}
+          source bootstrap.bash $testing
 
           # Generate LEMP
           sh generate-lemp.sh
