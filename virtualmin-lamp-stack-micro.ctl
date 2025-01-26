@@ -1,6 +1,6 @@
 Section: admin
 Priority: optional
-Homepage: https://github.com/virtualmin/virtualmin-lamp-stack-ubu
+Homepage: https://github.com/virtualmin/virtualmin-stack-meta
 Standards-Version: 3.9.2
 
 Package: virtualmin-lamp-stack-micro
