@@ -10,5 +10,4 @@ for i in *.ctl; do
   sed -i "s/apache2\s*$/nginx-full | nginx-extras, webmin-virtualmin-nginx, webmin-virtualmin-nginx-ssl/" "$lempname"
   sed -i "s/libapache2-mod-fcgid,\{0,1\}[[:space:]]*//" "$lempname"
   sed -i "s/apache2-suexec-custom,\{0,1\}[[:space:]]*//" "$lempname"
-  echo ' .' >> $lempname
 done

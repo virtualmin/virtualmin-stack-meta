@@ -14,3 +14,4 @@ Description: Installs the packages needed for the Virtualmin LAMP stack
  A dummy package designed to pull in all required dependencies. Together with
  the "virtualmin-core" package, it installs everything needed for the
  Virtualmin LAMP stack.
+ 
