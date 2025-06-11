@@ -83,7 +83,6 @@ jobs:
                   --suggests       "${pkg_suggests:-}"        \
                   --replaces       "${pkg_replaces:-}"        \
                   --skip           rpm                        \
-                  --summary        "${pkg_summary:-}"         \
                   --description    "${decoded_description:-}" \
                   --homepage       "${pkg_homepage:-}"
                 ;;
