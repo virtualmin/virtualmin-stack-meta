@@ -1,18 +1,17 @@
 Section: admin
 Priority: optional
 Homepage: https://github.com/virtualmin/virtualmin-stack-meta
-Standards-Version: 3.9.2
+Standards-Version: 4.6.2
 
 Package: virtualmin-lamp-stack-minimal
-Version: 7.0.7-1
-Maintainer: Joe Cooper <joe@virtualmin.com>
-Changed-By: Ilia Ross <ilia@virtualmin.com>
-Depends: bsdutils, libcrypt-ssleay-perl, unzip, zip, libfcgi-dev, openssl, apache2
-Recommends: python3, postfix, postfix-pcre, libapache2-mod-fcgid, apache2-suexec-custom, perl-doc, bind9, libdbd-mysql-perl, libxml-simple-perl, quota, iptables, firewalld, procmail, procmail-wrapper, mariadb-server | mysql-server, mariadb-client | mysql-client, mariadb-common | mysql-common, awstats, jailkit, php-pear, php-cgi, php-cli, php-fpm, php-mysql, php-mbstring, dovecot-core, dovecot-imapd, dovecot-pop3d, libsasl2-2, libsasl2-modules, sasl2-bin, p7zip, xz-utils, etckeeper, certbot, logrotate, lm-sensors, shared-mime-info, rsync, fcgiwrap, awscli, parted, sudo
-Suggests: postgresql, postgresql-client, libdbd-pg-perl, libpg-perl, clamav-base, clamav, clamav-daemon, clamav-freshclam, clamav-docs, clamav-testfiles, libconfig-inifiles-perl, spamassassin, spamc, postgrey, fail2ban, milter-greylist, proftpd-basic, proftpd-mod-crypto
-Replaces: virtualmin-base
+Version: 8.0.0
+Maintainer: Ilia Ross <ilia@virtualmin.com>
+Uploaders: Joe Cooper <joe@virtualmin.com>
+Depends: apache2
+Recommends: apache2-suexec-custom, libapache2-mod-fcgid
+Suggests: bind9, clamav, clamav-base, clamav-daemon, clamav-docs, clamav-freshclam, clamav-testfiles, dovecot-core, dovecot-imapd, dovecot-pop3d, jailkit, libsasl2-2, libsasl2-modules, milter-greylist, opendkim, php-imap, postfix, postfix-pcre, postgrey, procmail, procmail-wrapper, proftpd-basic, proftpd-mod-crypto, sasl2-bin, spamassassin, spamc, webmin-jailkit
 Architecture: all
-Description: Installs required dependencies for the stack
+Description: Installs the packages needed for a minimal Virtualmin LAMP stack
  A dummy package designed to pull in all required dependencies. Together with
- the "virtualmin-core" package, it installs everything needed for the selected
- stack.
+ the "virtualmin-core" package, it installs everything needed for the minimal
+ Virtualmin LAMP stack.
