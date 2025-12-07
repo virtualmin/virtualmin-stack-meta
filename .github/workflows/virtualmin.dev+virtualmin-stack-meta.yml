@@ -6,10 +6,12 @@ on:
       - master
   release:
     types:
-      - published
+      - prereleased
+      - released
 
 env:
   IS_RELEASE: ${{ github.event_name == 'release' }}
+  IS_PRERELEASE: ${{ github.event.release.prerelease || false }}
 
   BUILD_DEPS: "tar curl gzip dpkg-dev fakeroot build-essential coreutils"
   BUILD_BOOTSTRAP: "https://raw.githubusercontent.com/webmin/webmin-ci-cd/main/build/bootstrap.bash"
@@ -48,9 +50,10 @@ jobs:
           
           # Check testing flag
           testing=$([[ "${{ env.IS_RELEASE }}" == "false" ]] && echo "--testing" || echo "")
+          prerelease=$([[ "${{ env.IS_PRERELEASE }}" == "true" ]] && echo "--prerelease" || echo "")
           
           # Bootstrap build
-          source bootstrap.bash "$testing"
+          source bootstrap.bash "$testing" "$prerelease"
 
           # Generate LEMP
           sh generate-lemp.sh
