@@ -4,7 +4,7 @@ Homepage: https://github.com/virtualmin/virtualmin-stack-meta
 Standards-Version: 4.6.2
 
 Package: virtualmin-lamp-stack-minimal
-Version: 8.0.0
+Version: 8.0.1
 Maintainer: Ilia Ross <ilia@virtualmin.com>
 Uploaders: Joe Cooper <joe@virtualmin.com>
 Depends: apache2
