@@ -1,4 +1,4 @@
-name: "virtualmin.dev: virtualmin/virtualmin-stack-meta"
+name: Build
 
 on:
   push:
